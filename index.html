@@ -134,12 +134,12 @@
                     </p>
                     
                     <div class="flex flex-col sm:flex-row gap-5 pt-4">
-                        <a href="#pricing" class="group relative bg-primary text-white px-10 py-5 rounded-full font-bold text-lg flex items-center justify-center gap-3 hover:scale-105 transition-all shadow-2xl shadow-primary/30">
+                        <button onclick="openModal('order-modal')" class="group relative bg-primary text-white px-10 py-5 rounded-full font-bold text-lg flex items-center justify-center gap-3 hover:scale-105 transition-all shadow-2xl shadow-primary/30">
                             Mua sách ngay
                             <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                        </a>
-                        <button class="bg-white text-on-surface border border-outline-variant/30 px-10 py-5 rounded-full font-bold text-lg hover:bg-surface-container-low transition-colors shadow-sm">
-                            Tải chương đọc thử
+                        </button>
+                        <button onclick="openModal('reading-modal')" class="bg-white text-on-surface border border-outline-variant/30 px-10 py-5 rounded-full font-bold text-lg hover:bg-surface-container-low transition-colors shadow-sm">
+                            Đọc thử chương 1
                         </button>
                     </div>
 
@@ -405,7 +405,7 @@
                     <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                         <div>
                             <h2 class="font-headline text-4xl lg:text-6xl font-extrabold text-white mb-8 leading-tight">Đầu tư vào chính <br/><span class="text-primary-container font-black italic">phiên bản tốt nhất</span> của bạn.</h2>
-                            <p class="text-white/70 text-lg mb-12 font-medium">Bắt đầu hành trình kiến tạo sự nghiệp ngay hôm nay với các gói ưu đãi đặc biệt.</p>
+                            <p class="text-white/70 text-lg mb-12 font-medium">Bắt đầu hành trình kiến tạo sự nghiệp ngay hôm nay with các gói ưu đãi đặc biệt.</p>
                             
                             <div class="space-y-4">
                                 <div class="flex items-center gap-4 text-white">
@@ -432,7 +432,7 @@
                                     <span class="ml-auto text-sm line-through text-slate-300 font-bold italic">499k</span>
                                 </div>
 
-                                <button class="w-full bg-primary text-white py-6 rounded-2xl font-black text-xl hover:scale-102 active:scale-98 transition-all shadow-xl shadow-primary/30 flex items-center justify-center gap-3">
+                                <button onclick="openModal('order-modal')" class="w-full bg-primary text-white py-6 rounded-2xl font-black text-xl hover:scale-102 active:scale-98 transition-all shadow-xl shadow-primary/30 flex items-center justify-center gap-3">
                                     Đặt mua ngay
                                     <span class="material-symbols-outlined">shopping_cart</span>
                                 </button>
@@ -461,7 +461,7 @@
                 <p class="text-sm font-bold text-on-surface-variant opacity-60">© 2024 Engineering Ambition. All rights reserved.</p>
             </div>
 
-            <div class="flex wrap justify-center gap-8 md:gap-12">
+            <div class="flex flex-wrap justify-center gap-8 md:gap-12">
                 <a href="#" class="text-sm font-bold text-on-surface hover:text-primary transition-colors">Về tác giả</a>
                 <a href="#" class="text-sm font-bold text-on-surface hover:text-primary transition-colors">Chính sách bảo mật</a>
                 <a href="#" class="text-sm font-bold text-on-surface hover:text-primary transition-colors">Điều khoản dịch vụ</a>
@@ -479,8 +479,82 @@
         </div>
     </footer>
 
+    <!-- Modals -->
+    <!-- Reading Modal -->
+    <div id="reading-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-on-surface/60 backdrop-blur-md" onclick="closeModal('reading-modal')"></div>
+        <div class="relative bg-white w-full max-w-4xl max-h-[90vh] rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col animate-fade-in-up">
+            <div class="p-8 border-b flex justify-between items-center bg-surface">
+                <h3 class="text-2xl font-headline font-bold text-primary">Chương 1: Phá vỡ rào cản</h3>
+                <button onclick="closeModal('reading-modal')" class="text-on-surface hover:rotate-90 transition-transform">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="p-10 overflow-y-auto font-body text-lg leading-relaxed text-on-surface-variant space-y-6">
+                <p class="font-bold text-on-surface">"Thế hệ chúng ta không thiếu cơ hội, chúng ta chỉ thiếu bản lĩnh để từ bỏ những cơ hội không thuộc về mình."</p>
+                <p>Bạn đã bao giờ cảm thấy ngộp thở trước những thành công của bạn bè trên mạng xã hội? Cảm thấy mình đang bị bỏ lại phía sau trong cuộc đua marathon mang tên 'sự nghiệp'?</p>
+                <p>Đó là hội chứng Peer Pressure - áp lực đồng lứa. Trong chương đầu tiên này, chúng ta sẽ cùng mổ xẻ cơ chế hoạt động của nỗi sợ này và cách biến nó thành động lực thay vì xiềng xích...</p>
+                <div class="bg-primary/5 p-8 rounded-2xl border-l-4 border-primary italic">
+                    "Kiến trúc sư của một tòa nhà cần bản vẽ trước khi đặt viên gạch đầu tiên. Bạn cũng vậy."
+                </div>
+                <p>Hãy tưởng tượng sự nghiệp của bạn là một công trình vĩ đại. Đừng vội vàng xây móng khi chưa hiểu rõ nền đất mình đang đứng là gì...</p>
+                <div class="py-10 text-center">
+                    <p class="text-sm font-bold opacity-50 mb-4">Bạn đang xem bản đọc thử (15% nội dung chương 1)</p>
+                    <button onclick="closeModal('reading-modal'); openModal('order-modal')" class="bg-primary text-white px-8 py-3 rounded-full font-bold shadow-lg">Đọc tiếp trong bản đầy đủ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Modal -->
+    <div id="order-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+        <div class="absolute inset-0 bg-on-surface/60 backdrop-blur-md" onclick="closeModal('order-modal')"></div>
+        <div class="relative bg-white w-full max-w-lg rounded-[2.5rem] shadow-2xl overflow-hidden animate-fade-in-up">
+            <div class="p-10">
+                <div class="flex justify-between items-center mb-8">
+                    <h3 class="text-3xl font-headline font-black text-primary">Thông tin đặt sách</h3>
+                    <button onclick="closeModal('order-modal')" class="text-on-surface">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+                <form class="space-y-6" onsubmit="alert('Cảm ơn bạn đã đặt sách! Chúng tôi sẽ liên hệ sớm.'); return false;">
+                    <div>
+                        <label class="block text-sm font-bold mb-2 uppercase tracking-widest opacity-60">Họ và tên</label>
+                        <input type="text" required class="w-full bg-surface border-none rounded-2xl p-4 focus:ring-2 focus:ring-primary/20" placeholder="Nguyễn Văn A">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-2 uppercase tracking-widest opacity-60">Số điện thoại</label>
+                        <input type="tel" required class="w-full bg-surface border-none rounded-2xl p-4 focus:ring-2 focus:ring-primary/20" placeholder="0901 234 567">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-2 uppercase tracking-widest opacity-60">Địa chỉ nhận hàng</label>
+                        <textarea required class="w-full bg-surface border-none rounded-2xl p-4 focus:ring-2 focus:ring-primary/20" rows="3" placeholder="Số nhà, tên đường, phường/xã..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-secondary text-white py-5 rounded-2xl font-black text-lg shadow-xl shadow-secondary/20 hover:scale-102 active:scale-98 transition-all">
+                        Xác nhận đặt hàng - 349.000 VNĐ
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script>
+        // Modal logic
+        function openModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            const modal = document.getElementById(id);
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
         // Scroll Reveal Animation
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
