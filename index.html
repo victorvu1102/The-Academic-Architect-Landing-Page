@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="vi">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>The Academic Architect - Kiến Tạo Tương Lai</title>
+    <meta name="description" content="Lộ trình thực tế từ tư duy chọn ngành đến kỹ năng thực chiến cho học sinh & sinh viên trong kỷ nguyên số.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0053cc",
+                        "primary-container": "#779dff",
+                        "primary-dim": "#0048b3",
+                        "secondary": "#9b3f00",
+                        "secondary-container": "#ffc5aa",
+                        "tertiary": "#006a28",
+                        "tertiary-container": "#5cfd80",
+                        "surface": "#f8f5ff",
+                        "surface-container-low": "#f0efff",
+                        "surface-container-highest": "#d8daff",
+                        "on-surface": "#272c51",
+                        "on-surface-variant": "#545981",
+                        "outline-variant": "#a6aad7"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Manrope", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "xl": "1.5rem",
+                        "2xl": "2.5rem",
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0) rotate(3deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(5deg)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .text-gradient {
+                background: linear-gradient(135deg, #0053cc 0%, #779dff 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .glass-nav {
+                @apply bg-white/70 backdrop-blur-xl;
+            }
+            .reveal {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 0.8s ease-out;
+            }
+            .reveal.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-surface font-body text-on-surface antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="main-nav" class="fixed top-0 w-full z-50 transition-all duration-300 py-6">
+        <div class="flex justify-between items-center w-full px-6 max-w-7xl mx-auto">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+                    <span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+                </div>
+                <span class="text-xl font-extrabold tracking-tighter text-blue-800">The Academic Architect</span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 bg-white/50 backdrop-blur-md px-8 py-3 rounded-full border border-white/20 shadow-sm">
+                <a class="text-on-surface-variant font-semibold hover:text-primary transition-colors" href="#about">Cuốn Sách</a>
+                <a class="text-on-surface-variant font-semibold hover:text-primary transition-colors" href="#chapters">Nội Dung</a>
+                <a class="text-on-surface-variant font-semibold hover:text-primary transition-colors" href="#testimonials">Cảm Nhận</a>
+                <a class="bg-primary text-white px-6 py-2 rounded-full font-bold hover:scale-105 active:scale-95 transition-all shadow-lg shadow-primary/20" href="#pricing">Đặt Sách</a>
+            </div>
+
+            <button class="md:hidden text-primary p-2 bg-white rounded-full shadow-md">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 max-w-7xl mx-auto overflow-visible">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary-container/20 rounded-full blur-[120px] -z-10"></div>
+            <div class="absolute top-1/2 -left-24 w-72 h-72 bg-tertiary-container/30 rounded-full blur-[100px] -z-10"></div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <div class="lg:col-span-7 space-y-8 animate-fade-in-up">
+                    <div class="inline-flex items-center gap-2 bg-secondary-container/30 px-4 py-2 rounded-full border border-secondary-container/50">
+                        <span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+                        <span class="font-bold text-[10px] tracking-[0.2em] text-secondary uppercase">Kiến Tạo Sự Nghiệp 2024</span>
+                    </div>
+                    
+                    <h1 class="font-headline text-5xl lg:text-8xl font-extrabold tracking-tight leading-[1.05] text-on-surface">
+                        Đừng Chờ Đợi <br/>
+                        <span class="text-gradient">Cơ Hội</span>, Hãy Tự <br/>
+                        Thiết Kế Nó.
+                    </h1>
+                    
+                    <p class="text-lg lg:text-xl text-on-surface-variant max-w-xl leading-relaxed font-medium">
+                        Lộ trình thực tế từ tư duy chọn ngành đến kỹ năng thực chiến, giúp học sinh & sinh viên làm chủ bản đồ sự nghiệp trong kỷ nguyên số.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-5 pt-4">
+                        <a href="#pricing" class="group relative bg-primary text-white px-10 py-5 rounded-full font-bold text-lg flex items-center justify-center gap-3 hover:scale-105 transition-all shadow-2xl shadow-primary/30">
+                            Mua sách ngay
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </a>
+                        <button class="bg-white text-on-surface border border-outline-variant/30 px-10 py-5 rounded-full font-bold text-lg hover:bg-surface-container-low transition-colors shadow-sm">
+                            Tải chương đọc thử
+                        </button>
+                    </div>
+
+                    <div class="flex items-center gap-4 pt-6">
+                        <div class="flex -space-x-3">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSMy98hsmj8ZbF6klxaNRf_dJ5UN2QDDcUaqAjpBUc2j6GZRPC8hHUkRlUqlcG02w1AFyrGICx5MrgPy7JK76K98K-_RCuTFHW7FYOhpXZkW6kj6ZuwPxt9Ok-sOCYAYeJk7VQhfQIi3jTp58OYGPcf6zWnRWMkHJnMOJ3BZDxh2Xo6qhZ-huKMgWE1rGHtHlawUz1x9e94XS1Y6w0nty0dY5CCV-nVCr5iv1Epa8zM9oXgfM1LwNdTBrc0p7j4C2vk8wuPNYUaf8" class="w-10 h-10 rounded-full border-2 border-white object-cover" alt="User">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCvTeAEQw9LhI1L7oKDbmhIuX1NrQBiImnIcYi7j2oDyPiwd4_dupd1Rjw14JzwC_t4BGcV13c7-9PSHZKeW-Rh5Kg2Wg3p2kIuGc9PF7cM3o7JyfWYaAG_W8WDCPTzlSOeaon_MO-1FGxinM36pCS8sYzVt_wyvHCnKxRwp0luQWaV1GCGmMQWDX5UvC6RLOYadh7LiERYerAyfTHfrlSQWKI2xh6IsgZ5D5NwD3f_ASCLwOfhJk8Gfr7RTZ3QU6cn8r60VQGw3A" class="w-10 h-10 rounded-full border-2 border-white object-cover" alt="User">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjui47Zq5Phqag6qamPqtaQMpShOuFK_MZEmR4U0_DJ8zVd1tD0o1VS76fNiNMHIHFxIUDrlmrObrpsAR29iayOZAfw13Gq5MS9TfgLfUC8S_j6tHMp0-G1x5Y_zLSlLfqUCeBAuXYS-4pf4S8Yzi9bOuqG0kXz3zaTa7jsWZzwZmpfrO4UYx-oECjvTkjtD2BFGRTn7sNcb9mQyl20XakFnt1KQtyQXwjAZPm-E_HMvz8u59otLaUOLCCzonPGZfzPRAX_cukFyY" class="w-10 h-10 rounded-full border-2 border-white object-cover" alt="User">
+                            <div class="w-10 h-10 rounded-full border-2 border-white bg-surface-container-highest flex items-center justify-center text-[10px] font-bold text-primary">
+                                +10k
+                            </div>
+                        </div>
+                        <p class="text-sm font-semibold text-on-surface-variant">Đã có hơn 10,000 độc giả tin dùng</p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 relative perspective-1000">
+                    <div class="relative animate-float">
+                        <div class="absolute inset-0 bg-primary/10 blur-3xl rounded-full -z-10 transform scale-110"></div>
+                        <img alt="Book Cover" class="w-full h-auto rounded-xl shadow-[0_50px_100px_-20px_rgba(0,0,0,0.3)] object-cover aspect-[3/4.2]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2YE6dkOhLpylMTmZTfUVEXZhnvZePbP6b4QXFDHgmU2fG0KwiJ-U2alXk2oGnQ2jDa53GpJn2IBQ7j70PZ7YHp0oAYMYUrh3mPkP0RbASUPbJYxULrKf5cJn-sQNIR4_S7gwg8uLuTGsz7rzObCqfPjQYlz8Kf0rfkg9tFmWbQNb8QeoyROWfpqsLc49TIqU_yA01kc_eVoyDxtnGDXtBskXSgvEagOy2kl72k9onYrGfWe6ZNVO2oqNNSv9vfxoujAfiv3Qjnz0"/>
+                        
+                        <!-- Floating Badges -->
+                        <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl border border-slate-100 hidden md:block animate-bounce-slow">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-green-100 text-green-600 rounded-lg">
+                                    <span class="material-symbols-outlined">trending_up</span>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] font-bold text-slate-400 uppercase">Growth Rate</p>
+                                    <p class="text-sm font-bold text-slate-800">+85% Định hướng</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="about" class="bg-surface-container-low py-32 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                    <div class="reveal">
+                        <span class="font-bold text-xs tracking-widest text-primary mb-4 block uppercase underline decoration-2 underline-offset-8">Giá trị cốt lõi</span>
+                        <h2 class="font-headline text-4xl lg:text-5xl font-bold mb-8 leading-tight">Giải mã áp lực "Định hướng" trong kỷ nguyên số.</h2>
+                        <p class="text-lg text-on-surface-variant leading-relaxed mb-10 font-medium">
+                            Thế giới đang thay đổi nhanh hơn bao giờ hết. Tấm bằng đại học không còn là tấm vé bảo chứng duy nhất cho thành công. Bạn cần một bộ công cụ tư duy (Mindset) và kỹ năng thực tế (Skillset) để không bị bỏ lại phía sau.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="p-2 bg-primary/10 text-primary rounded-lg shrink-0">
+                                    <span class="material-symbols-outlined">auto_awesome</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Phương pháp luận thực tế</h4>
+                                    <p class="text-on-surface-variant">Không lý thuyết suông, mọi chương đều đi kèm bài tập thực hành.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="p-2 bg-tertiary/10 text-tertiary rounded-lg shrink-0">
+                                    <span class="material-symbols-outlined">video_library</span>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Hệ sinh thái Video giảng dạy</h4>
+                                    <p class="text-on-surface-variant">Quét mã QR để xem tác giả hướng dẫn trực tiếp từng bài học.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-6 reveal delay-200">
+                        <div class="space-y-6 pt-12">
+                            <div class="group bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                                <span class="material-symbols-outlined text-primary mb-6 text-4xl">psychology</span>
+                                <h3 class="font-bold text-xl mb-3">Tư Duy</h3>
+                                <p class="text-sm text-on-surface-variant leading-relaxed">Xây dựng nền móng tư duy độc lập và bền bỉ trước biến động.</p>
+                            </div>
+                            <div class="group bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                                <span class="material-symbols-outlined text-tertiary mb-6 text-4xl">rocket_launch</span>
+                                <h3 class="font-bold text-xl mb-3">Hành Động</h3>
+                                <p class="text-sm text-on-surface-variant leading-relaxed">Kỹ năng thực thi nhanh, biến ý tưởng thành kết quả cụ thể.</p>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="group bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                                <span class="material-symbols-outlined text-secondary mb-6 text-4xl">diversity_3</span>
+                                <h3 class="font-bold text-xl mb-3">Kết Nối</h3>
+                                <p class="text-sm text-on-surface-variant leading-relaxed">Mở rộng mạng lưới quan hệ chất lượng từ khi còn là sinh viên.</p>
+                            </div>
+                            <div class="group bg-white p-8 rounded-3xl shadow-sm border border-outline-variant/10 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500">
+                                <span class="material-symbols-outlined text-blue-400 mb-6 text-4xl">menu_book</span>
+                                <h3 class="font-bold text-xl mb-3">Kiến Thức</h3>
+                                <p class="text-sm text-on-surface-variant leading-relaxed">Hệ thống hóa tri thức ngành nghề trong tương lai.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section id="chapters" class="py-32 max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-20 reveal">
+                <h2 class="font-headline text-4xl lg:text-5xl font-bold mb-6 italic underline decoration-primary/30">Hành Trình Kiến Tạo</h2>
+                <p class="text-on-surface-variant text-lg font-medium">Lộ trình 5 bước được thiết kế để bạn làm chủ sự nghiệp của chính mình.</p>
+            </div>
+
+            <div class="relative space-y-16 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-outline-variant/50 before:to-transparent">
+                
+                <!-- Ch 1 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-surface bg-primary text-white shadow-xl md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shrink-0 z-10 transition-transform group-hover:scale-125">
+                        <span class="text-sm font-bold font-headline">01</span>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[45%] p-8 rounded-2xl bg-white shadow-sm border border-outline-variant/10 hover:border-primary/30 transition-colors">
+                        <h4 class="font-bold text-2xl text-primary mb-3">Phá vỡ rào cản tâm lý</h4>
+                        <p class="text-on-surface-variant font-medium">Vượt qua nỗi sợ chọn sai ngành và áp lực đồng lứa (Peer Pressure). Xây dựng sự tự tin từ bên trong.</p>
+                    </div>
+                </div>
+
+                <!-- Ch 2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-surface bg-tertiary text-white shadow-xl md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shrink-0 z-10 transition-transform group-hover:scale-125">
+                        <span class="text-sm font-bold font-headline">02</span>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[45%] p-8 rounded-2xl bg-white shadow-sm border border-outline-variant/10 hover:border-tertiary/30 transition-colors">
+                        <h4 class="font-bold text-2xl text-tertiary mb-3">Ikigai Thời Đại Số</h4>
+                        <p class="text-on-surface-variant font-medium">Tìm ra giao điểm giữa đam mê, sở trường và nhu cầu của thị trường lao động trong 10 năm tới.</p>
+                    </div>
+                </div>
+
+                <!-- Ch 3 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-surface bg-secondary text-white shadow-xl md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shrink-0 z-10 animate-pulse transition-transform group-hover:scale-125">
+                        <span class="text-sm font-bold font-headline">03</span>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[45%] p-8 rounded-2xl bg-white shadow-lg border-l-8 border-secondary transform translate-x-2">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-[10px] font-bold bg-secondary/10 text-secondary px-2 py-1 rounded">Chương quan trọng</span>
+                            <h4 class="font-bold text-2xl text-secondary">Thực thi & Tối ưu</h4>
+                        </div>
+                        <p class="text-on-surface-variant font-medium italic">"Chiến thuật 80/20 trong việc học và phát triển kỹ năng nhanh để dẫn đầu thị trường."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bento Portfolio -->
+        <section class="py-32 bg-on-surface text-white">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="md:col-span-2 md:row-span-2 bg-primary p-12 rounded-[3rem] flex flex-col justify-between overflow-hidden relative reveal">
+                        <div class="z-10">
+                            <h3 class="font-headline text-4xl font-bold mb-6">Sơ đồ Mindset <br/>Thực Chiến</h3>
+                            <p class="text-xl opacity-80 leading-relaxed font-medium">Bộ 20+ sơ đồ hướng dẫn từng bước lập kế hoạch sự nghiệp từ con số 0.</p>
+                        </div>
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCva5wQNDL9cWYjhH8pBzAjrTDJKSZ63y27y4-tvbx1hpRIIEDXQ6bMRW5sANu0Wu1KRtKxbdb8oqX7U1TwIO5XeZH7YCWuMwFOzitgvCapWZTgD1FJfS7yX8i7t8Ax8j58vC-6I_tqMmWXBrQ6stzIjcEMLCzA2iZL6zrS2itSIXGfZufpPxpfx2ewzxl5cF8uarZJNliuNl5-svUCxM1z9_5TOt8EzYn5eLwOkRLiKlolPFmaFS_kjhll-_kOdv-Hajow5COCsIA" alt="Planning" class="absolute -bottom-10 -right-10 w-3/4 opacity-40 blur-sm rounded-3xl transform rotate-6 object-cover aspect-video">
+                    </div>
+                    
+                    <div class="md:col-span-2 bg-white/10 backdrop-blur-md p-10 rounded-[3rem] border border-white/10 reveal delay-100">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-14 h-14 bg-secondary rounded-2xl flex items-center justify-center">
+                                <span class="material-symbols-outlined text-white text-3xl">qr_code_2</span>
+                            </div>
+                            <h3 class="font-bold text-2xl">Bài Giảng Độc Quyền</h3>
+                        </div>
+                        <p class="text-lg opacity-70 font-medium">Mỗi chương sách đều có một khóa học Video đi kèm để bạn hiểu sâu và áp dụng ngay.</p>
+                    </div>
+
+                    <div class="md:col-span-1 bg-tertiary p-10 rounded-[3rem] reveal delay-200">
+                        <p class="text-5xl font-extrabold mb-2 font-headline">100+</p>
+                        <p class="text-sm font-bold uppercase tracking-widest opacity-80">Case Studies Thực Tế</p>
+                    </div>
+
+                    <div class="md:col-span-1 bg-surface-container-highest/20 backdrop-blur-sm p-10 rounded-[3rem] border border-white/10 reveal delay-300">
+                        <h3 class="font-bold text-2xl mb-4 italic">Checklist</h3>
+                        <p class="text-sm opacity-60">Bảng kiểm kỹ năng thiết yếu cho từng nhóm ngành nghề sáng tạo & kỹ thuật.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section id="testimonials" class="py-32 max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <h2 class="font-headline text-4xl lg:text-5xl font-bold mb-4">Chứng thực từ độc giả</h2>
+                <p class="text-on-surface-variant text-lg">Hành trình thay đổi bắt đầu từ những trang sách đầu tiên.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Card 1 -->
+                <div class="group bg-white p-10 rounded-3xl shadow-sm border border-outline-variant/10 hover:shadow-2xl transition-all reveal duration-700">
+                    <div class="flex gap-1 text-secondary mb-8">
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                    </div>
+                    <p class="text-on-surface text-lg font-medium leading-relaxed mb-10 group-hover:text-primary transition-colors italic">
+                        "Cuốn sách đã giúp mình thoát khỏi sự mông lung sau khi tốt nghiệp. Những bước đi thực tế giúp mình có được công việc mơ ước chỉ sau 2 tháng."
+                    </p>
+                    <div class="flex items-center gap-4 border-t border-slate-100 pt-8">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSMy98hsmj8ZbF6klxaNRf_dJ5UN2QDDcUaqAjpBUc2j6GZRPC8hHUkRlUqlcG02w1AFyrGICx5MrgPy7JK76K98K-_RCuTFHW7FYOhpXZkW6kj6ZuwPxt9Ok-sOCYAYeJk7VQhfQIi3jTp58OYGPcf6zWnRWMkHJnMOJ3BZDxh2Xo6qhZ-huKMgWE1rGHtHlawUz1x9e94XS1Y6w0nty0dY5CCV-nVCr5iv1Epa8zM9oXgfM1LwNdTBrc0p7j4C2vk8wuPNYUaf8" class="w-12 h-12 rounded-full object-cover grayscale group-hover:grayscale-0 transition-all" alt="User">
+                        <div>
+                            <p class="font-bold">Trần Minh Quân</p>
+                            <p class="text-xs text-on-surface-variant font-bold uppercase tracking-tighter">Marketing Executive @ TechCorp</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group bg-white p-10 rounded-3xl shadow-sm border border-outline-variant/10 hover:shadow-2xl transition-all reveal delay-100 duration-700">
+                    <div class="flex gap-1 text-secondary mb-8">
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                    </div>
+                    <p class="text-on-surface text-lg font-medium leading-relaxed mb-10 group-hover:text-primary transition-colors italic">
+                        "Một nguồn tài liệu quý báu mà tôi luôn khuyên các học sinh của mình nên đọc để có cái nhìn tổng quan về nghề nghiệp tương lai."
+                    </p>
+                    <div class="flex items-center gap-4 border-t border-slate-100 pt-8">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCvTeAEQw9LhI1L7oKDbmhIuX1NrQBiImnIcYi7j2oDyPiwd4_dupd1Rjw14JzwC_t4BGcV13c7-9PSHZKeW-Rh5Kg2Wg3p2kIuGc9PF7cM3o7JyfWYaAG_W8WDCPTzlSOeaon_MO-1FGxinM36pCS8sYzVt_wyvHCnKxRwp0luQWaV1GCGmMQWDX5UvC6RLOYadh7LiERYerAyfTHfrlSQWKI2xh6IsgZ5D5NwD3f_ASCLwOfhJk8Gfr7RTZ3QU6cn8r60VQGw3A" class="w-12 h-12 rounded-full object-cover grayscale group-hover:grayscale-0 transition-all" alt="User">
+                        <div>
+                            <p class="font-bold">TS. Nguyễn Thu Hà</p>
+                            <p class="text-xs text-on-surface-variant font-bold uppercase tracking-tighter">Giảng viên ĐH Quốc Gia</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group bg-white p-10 rounded-3xl shadow-sm border border-outline-variant/10 hover:shadow-2xl transition-all reveal delay-200 duration-700">
+                    <div class="flex gap-1 text-secondary mb-8">
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                        <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                    </div>
+                    <p class="text-on-surface text-lg font-medium leading-relaxed mb-10 group-hover:text-primary transition-colors italic">
+                        "Cách viết gần gũi, không giáo điều. Mình thích nhất phần sơ đồ tư duy ở chương 4, cực kỳ dễ hiểu và dễ áp dụng."
+                    </p>
+                    <div class="flex items-center gap-4 border-t border-slate-100 pt-8">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjui47Zq5Phqag6qamPqtaQMpShOuFK_MZEmR4U0_DJ8zVd1tD0o1VS76fNiNMHIHFxIUDrlmrObrpsAR29iayOZAfw13Gq5MS9TfgLfUC8S_j6tHMp0-G1x5Y_zLSlLfqUCeBAuXYS-4pf4S8Yzi9bOuqG0kXz3zaTa7jsWZzwZmpfrO4UYx-oECjvTkjtD2BFGRTn7sNcb9mQyl20XakFnt1KQtyQXwjAZPm-E_HMvz8u59otLaUOLCCzonPGZfzPRAX_cukFyY" class="w-12 h-12 rounded-full object-cover grayscale group-hover:grayscale-0 transition-all" alt="User">
+                        <div>
+                            <p class="font-bold">Lê Hoàng Nam</p>
+                            <p class="text-xs text-on-surface-variant font-bold uppercase tracking-tighter">Sinh viên năm 3 - FTU</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA / Pricing -->
+        <section id="pricing" class="py-32 px-6">
+            <div class="max-w-5xl mx-auto">
+                <div class="bg-primary-dim rounded-[3.5rem] p-12 lg:p-24 overflow-hidden relative shadow-2xl reveal">
+                    <div class="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,#0053cc,transparent)] opacity-50"></div>
+                    
+                    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                        <div>
+                            <h2 class="font-headline text-4xl lg:text-6xl font-extrabold text-white mb-8 leading-tight">Đầu tư vào chính <br/><span class="text-primary-container font-black italic">phiên bản tốt nhất</span> của bạn.</h2>
+                            <p class="text-white/70 text-lg mb-12 font-medium">Bắt đầu hành trình kiến tạo sự nghiệp ngay hôm nay với các gói ưu đãi đặc biệt.</p>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-4 text-white">
+                                    <span class="material-symbols-outlined text-tertiary-container">verified</span>
+                                    <span class="font-bold">Giao hàng miễn phí toàn quốc</span>
+                                </div>
+                                <div class="flex items-center gap-4 text-white">
+                                    <span class="material-symbols-outlined text-tertiary-container">verified</span>
+                                    <span class="font-bold">Tặng kèm bộ Bookmark Academic Architect</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6">
+                            <!-- Popular Choice -->
+                            <div class="bg-white p-8 lg:p-10 rounded-[2.5rem] shadow-2xl transform lg:scale-110 relative border-4 border-secondary/20">
+                                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-secondary text-white px-6 py-1 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-lg">Bản giới hạn</div>
+                                <h3 class="text-2xl font-black text-on-surface mb-2">Combo Kiến Tạo</h3>
+                                <p class="text-on-surface-variant text-sm font-bold mb-6">Sách + Sổ tay Planner + Khóa học Video</p>
+                                
+                                <div class="flex items-baseline gap-2 mb-8 border-b border-slate-100 pb-8">
+                                    <span class="text-5xl font-black text-primary">349.000</span>
+                                    <span class="text-lg font-bold text-slate-400">VNĐ</span>
+                                    <span class="ml-auto text-sm line-through text-slate-300 font-bold italic">499k</span>
+                                </div>
+
+                                <button class="w-full bg-primary text-white py-6 rounded-2xl font-black text-xl hover:scale-102 active:scale-98 transition-all shadow-xl shadow-primary/30 flex items-center justify-center gap-3">
+                                    Đặt mua ngay
+                                    <span class="material-symbols-outlined">shopping_cart</span>
+                                </button>
+                            </div>
+
+                            <button class="w-full bg-white/10 backdrop-blur-md text-white py-6 rounded-3xl font-bold border border-white/20 hover:bg-white/20 transition-all flex items-center justify-center gap-2">
+                                Xem bản tiêu chuẩn (199.000 VNĐ)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface py-20 px-6 border-t border-outline-variant/10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12 text-center md:text-left">
+            <div class="space-y-4">
+                <div class="flex items-center gap-2 justify-center md:justify-start">
+                    <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                        <span class="material-symbols-outlined text-white text-sm" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+                    </div>
+                    <span class="text-lg font-black tracking-tighter text-blue-800 uppercase">The Academic Architect</span>
+                </div>
+                <p class="text-sm font-bold text-on-surface-variant opacity-60">© 2024 Engineering Ambition. All rights reserved.</p>
+            </div>
+
+            <div class="flex wrap justify-center gap-8 md:gap-12">
+                <a href="#" class="text-sm font-bold text-on-surface hover:text-primary transition-colors">Về tác giả</a>
+                <a href="#" class="text-sm font-bold text-on-surface hover:text-primary transition-colors">Chính sách bảo mật</a>
+                <a href="#" class="text-sm font-bold text-on-surface hover:text-primary transition-colors">Điều khoản dịch vụ</a>
+                <a href="#" class="text-sm font-bold text-on-surface hover:text-primary transition-colors">Liên hệ</a>
+            </div>
+
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm border border-slate-100 hover:scale-110 transition-transform">
+                    <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm border border-slate-100 hover:scale-110 transition-transform">
+                    <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Initial check
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('glass-nav', 'py-4', 'shadow-xl');
+                nav.classList.remove('py-6');
+            } else {
+                nav.classList.remove('glass-nav', 'py-4', 'shadow-xl');
+                nav.classList.add('py-6');
+            }
+        });
+    </script>
+</body>
+</html>
